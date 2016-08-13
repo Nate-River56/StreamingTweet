@@ -4,6 +4,9 @@ source 'https://rubygems.org'
 # プロセス管理 forever的な
 gem 'foreman'
 
+# Twitter Streaming APIの使用
+gem 'twitter'
+
 # OR Mapper
 gem 'activerecord'
 
