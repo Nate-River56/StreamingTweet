@@ -19,3 +19,6 @@ gem 'logger'
 # Chatworkに投稿する
 gem 'chatwork'
 
+# マイグレーションに使用する
+gem 'rake'
+
