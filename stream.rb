@@ -4,6 +4,7 @@ require "yaml"
 require "active_record"
 require "twitter"
 require "time"
+require "chatwork"
 
 DBCONF_FILE = "./db/config/database.yml"
 
@@ -33,8 +34,21 @@ class TwtrStream
   def track(keywords=@Keywords)
     cond = {track: keywords.join(","), lang: 'ja'}
     @twtr.filter(cond) do |object|
-      puts object.user.name
-      puts object.text if object.is_a?(Twitter::Tweet)
+      tweet = Tweet.new(
+        :keyword     => keywords
+        :user_id     => object.user.id,
+        :screen_name => object.user.screen_name,
+        :name        => object.user.name,
+        :text        => object.text,
+        :posted_at   => object.created_at 
+      )
+      tweet.save
+      puts "UserID: #{object.user.id}"
+      puts "UserScName: @#{object.user.screen_name}"
+      puts "UserName: #{object.user.name}"
+      puts "Tweet: #{object.text}"
+      puts "PostAt: #{object.created_at}"
+      puts "============================"
     end
   end
 
@@ -44,7 +58,9 @@ begin
   stream = TwtrStream.new(ARGV)
   stream.track
 rescue Timeout::Error,StandardError => e
-  p e.class
+  puts "---------------------"
+  puts "Exception: #{e.class}"
+  puts "---------------------"
   #raise e
   sleep(0.1)
   retry

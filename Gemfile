@@ -1,3 +1,6 @@
+
+source 'https://rubygems.org'
+
 # プロセス管理 forever的な
 gem 'foreman'
 
@@ -11,4 +14,8 @@ gem 'sqlite3'
 gem 'logger'
 
 # YAMLを設定ファイルの書式にする
-gem 'yaml'
+#gem 'yaml'
+
+# Chatworkに投稿する
+gem 'chatwork'
+
