@@ -1,1 +1,1 @@
-twitter: ruby stream.rb ${KEYWORDS}
+twitter: screen -AmdS twitter ruby stream.rb ${KEYWORDS}
