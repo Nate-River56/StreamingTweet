@@ -35,7 +35,7 @@ class TwtrStream
     cond = {track: keywords.join(","), lang: 'ja'}
     @twtr.filter(cond) do |object|
       tweet = Tweet.new(
-        :keyword     => keywords,
+        :keywords     => keywords,
         :user_id     => object.user.id,
         :screen_name => object.user.screen_name,
         :name        => object.user.name,
